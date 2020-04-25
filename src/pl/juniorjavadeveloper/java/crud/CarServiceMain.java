@@ -39,10 +39,12 @@ public class CarServiceMain {
         // ... najpierw pobieramy katalog samochodów, aby znać identyfikatory samochodów ...
         List<Car> carsCatalogUpdate = carService.list();
         // ... wybieramy pierwszy samochód do modyfikacji danych ...
-        Car firstCar = carsCatalogUpdate.get(0);
+        Integer firstCarId = carsCatalogUpdate.get(0).getId();
+        Car firstCar = carService.read(firstCarId);
         System.out.println("Dane samochodu do modyfikacji: " + firstCar);
         // ... podajemy nowe dane samochodu ...
         Car firstCarUpdate = new Car();
+        firstCarUpdate.setId(firstCar.getId());
         firstCarUpdate.setYear(firstCar.getYear());
         firstCarUpdate.setModel("Corolla Sport");
         firstCarUpdate.setManufacturer(firstCar.getManufacturer());
